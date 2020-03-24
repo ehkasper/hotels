@@ -10,7 +10,11 @@
   { :classification 5 :weekdays 220 :weekdaysReward 100 :weekends 150 :weekendsReward 40 })
 
 
+(def str-to-date-formater
+  (java.text.SimpleDateFormat. "ddEyyyy"))
+
 (defn foo
   "I don't do a whole lot."
   [x]
   (println x "Hello, World!"))
+
