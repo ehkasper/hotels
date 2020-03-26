@@ -43,6 +43,10 @@
   (testing "should validate input"
     (not (is-valid-day "date"))
     (is (is-valid-day "16Mar2009(mon)")))
+
+  (testing "should extract type of client"
+    (is (= "Reward" (get-client-type "Reward: 16Mar2009(mon)")))
+    (is (= "Regular" (get-client-type "Regular: 16Mar2009(mon)"))))
 )
 
 

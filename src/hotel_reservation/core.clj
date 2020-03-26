@@ -37,6 +37,9 @@
   (let [date-pattern #"\d{1,2}\w+\d{4}\(\w{3,4}\)"]
     (re-matches date-pattern day)))
 
+(defn get-client-type [line]
+  (get (re-find #"(\w+):" line) 1))
+
 (def str-to-date-formater
   (java.text.SimpleDateFormat. "ddEyyyy"))
 
