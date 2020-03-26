@@ -47,6 +47,11 @@
   (testing "should extract type of client"
     (is (= "Reward" (get-client-type "Reward: 16Mar2009(mon)")))
     (is (= "Regular" (get-client-type "Regular: 16Mar2009(mon)"))))
+
+  (testing "should validate type of client"
+           (is (is-valid-client-type "Reward"))
+           (is (is-valid-client-type "Regular"))
+           (not (is-valid-client-type "other")))
 )
 
 
