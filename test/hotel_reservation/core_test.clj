@@ -37,8 +37,8 @@
     (is (= (get-day "16Mar2009(mon)") "mon"))
     (is (= (get-day "16Mar2009(tues)") "tues"))
 
-  (testing "should return a list of dates"
-    (is (= ["date1", "date2"] (get-dates "date1, date2"))))
+  (testing "should return a list of dates when line is inputed"
+    (is (= ["date1", "date2"] (get-dates "Reward: date1, date2"))))
 
   (testing "should validate input"
     (not (is-valid-day "date"))
@@ -49,9 +49,9 @@
     (is (= "Regular" (get-client-type "Regular: 16Mar2009(mon)"))))
 
   (testing "should validate type of client"
-           (is (is-valid-client-type "Reward"))
-           (is (is-valid-client-type "Regular"))
-           (not (is-valid-client-type "other")))
+    (is (is-valid-client-type "Reward"))
+    (is (is-valid-client-type "Regular"))
+    (not (is-valid-client-type "other")))
 )
 
 

@@ -30,8 +30,9 @@
   (let [day-pattern "\\((\\w+)\\)"]
     (get (re-find (re-pattern day-pattern) date) 1)))
 
-(defn get-dates [dates]
-  (str/split dates #", "))
+(defn get-dates [line]
+  (let [dates (get (re-find #"\w+\:\ (.*)" line) 1)]
+    (str/split dates #", ")))
 
 (defn is-valid-day [day]
   (let [date-pattern #"\d{1,2}\w+\d{4}\(\w{3,4}\)"]
