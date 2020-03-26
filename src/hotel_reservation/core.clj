@@ -1,4 +1,5 @@
 (ns hotel-reservation.core)
+(require '[clojure.string :as str])
 
 (def lakewood
   { :classification 3
@@ -24,6 +25,13 @@
 
 (defn is-weekday [day]
   (and (not= day "sat")) (not= day "sun"))
+
+(defn get-day [date]
+  (let [day-pattern "\\((\\w+)\\)"]
+    (get (re-find (re-pattern day-pattern) date) 1)))
+
+(defn get-dates [dates]
+  (str/split dates #", "))
 
 (def str-to-date-formater
   (java.text.SimpleDateFormat. "ddEyyyy"))

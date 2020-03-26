@@ -28,19 +28,19 @@
     (is (is-weekday "wed"))
     (is (is-weekday "thu"))
     (is (is-weekday "fri")))
+
   (testing "should return false when input is a weekend"
     (not (is-weekday "sat")))
-    (not (is-weekday "sun")))
+    (not (is-weekday "sun"))
 
-(deftest test-date-format
-  (testing "simple format"
-         (is (= (.format
-           (java.text.SimpleDateFormat. "dd.MM.yyyy")
-           (.parse
-             (java.text.SimpleDateFormat. "ddMMyyyy")
-             "08082013")) "08.08.2013"))
-           ;(= (.parse (str-to-date-formater) "20Mar2019") (java.time.LocalDateTime/of 2019 3 20 0 0))
-           ))
+  (testing "should extract day from string")
+    (is (= (get-day "16Mar2009(mon)") "mon"))
+    (is (= (get-day "16Mar2009(tues)") "tues"))
+
+  (testing "should return a list of dates"
+    (is (= ["date1", "date2"] (get-dates "date1, date2"))))
+)
+
 
 (deftest test-dates
   (testing "testing date formats"
