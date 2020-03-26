@@ -39,6 +39,10 @@
 
   (testing "should return a list of dates"
     (is (= ["date1", "date2"] (get-dates "date1, date2"))))
+
+  (testing "should validate input"
+    (not (is-valid-day "date"))
+    (is (is-valid-day "16Mar2009(mon)")))
 )
 
 

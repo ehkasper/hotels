@@ -33,6 +33,10 @@
 (defn get-dates [dates]
   (str/split dates #", "))
 
+(defn is-valid-day [day]
+  (let [date-pattern #"\d{1,2}\w+\d{4}\(\w{3,4}\)"]
+    (re-matches date-pattern day)))
+
 (def str-to-date-formater
   (java.text.SimpleDateFormat. "ddEyyyy"))
 
