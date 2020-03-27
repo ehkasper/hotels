@@ -44,11 +44,5 @@
 (defn is-valid-client-type [client-type]
   (or (= client-type "Regular") (= client-type "Reward")))
 
-(def str-to-date-formater
-  (java.text.SimpleDateFormat. "ddEyyyy"))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
 
