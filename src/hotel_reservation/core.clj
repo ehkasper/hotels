@@ -47,11 +47,8 @@
 (defn is-weekday? [day]
   (if (or (= day "sat") (= day "sun")) false true))
 
-(defn sum-of-lakewood [client-type, days]
+(defn sum-of [hotel client-type days]
   (let [weekdayKey (if (= client-type "Regular") :weekdays :weekdaysReward)
         weekendKey (if (= client-type "Regular") :weekends :weekendsReward)]
     (reduce +
-            (map
-             (fn [day]
-                (get lakewood (if (is-weekday? day) weekdayKey weekendKey)))
-             days))))
+      (map #(get hotel (if (is-weekday? %) weekdayKey weekendKey)) days))))
