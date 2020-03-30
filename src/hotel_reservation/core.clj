@@ -23,13 +23,6 @@
     :weekendsReward 40 })
 
 
-(defn is-weekday [day]
-  (and (not= day "sat")) (not= day "sun"))
-
-(defn get-day [date]
-  (let [day-pattern "\\((\\w+)\\)"]
-    (get (re-find (re-pattern day-pattern) date) 1)))
-
 (defn get-dates [line]
   (let [dates (get (re-find #"\w+\:\ (.*)" line) 1)]
     (str/split dates #", ")))
@@ -44,5 +37,18 @@
 (defn is-valid-client-type [client-type]
   (or (= client-type "Regular") (= client-type "Reward")))
 
+(defn get-day [date]
+  (let [day-pattern "\\((\\w+)\\)"]
+    (get (re-find (re-pattern day-pattern) date) 1)))
 
+(defn get-days [dates]
+  (map #(get-day %) dates))
 
+(defn is-weekday? [day]
+  (if (or (= day "sat") (= day "sun")) false true))
+
+(defn parse-day [day]
+  (if (is-weekday? day) :week :weekend))
+
+(defn type-of-day [days]
+  (map #(parse-day %) days))

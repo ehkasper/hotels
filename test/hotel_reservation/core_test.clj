@@ -22,15 +22,15 @@
 
 (deftest parsing-input
   (testing "should return true when input is a weekday"
-      (is (is-weekday "mon"))
-      (is (is-weekday "tues"))
-      (is (is-weekday "wed"))
-      (is (is-weekday "thu"))
-      (is (is-weekday "fri")))
+           (is (is-weekday? "mon"))
+           (is (is-weekday? "tues"))
+           (is (is-weekday? "wed"))
+           (is (is-weekday? "thu"))
+           (is (is-weekday? "fri")))
 
   (testing "should return false when input is a weekend"
-      (not (is-weekday "sat")))
-      (not (is-weekday "sun"))
+      (is (= false (is-weekday? "sat")))
+      (is (= false (is-weekday? "sun"))))
 
   (testing "should extract day from string")
       (is (= (get-day "16Mar2009(mon)") "mon"))
@@ -53,6 +53,14 @@
       (not (is-valid-client-type "other"))))
 
 (deftest processing-dates
+  (testing "should return a list of days when dates are given"
+     (is (= (get-days ["16Mar2009(mon)", "17Mar2009(tue)"]) ["mon", "tue"])))
 
+  (testing "should return a list of :weekend/:weekday"
+    (is (= (type-of-day ["mon"]) [:week]))
+    (is (= (type-of-day ["mon" "tue"]) [:week :week]))
+    (is (= (type-of-day ["sat"]) [:weekend]))
+    (is (= (type-of-day ["fri", "sat"]) [:week, :weekend]))
   )
+)
 
