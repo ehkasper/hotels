@@ -57,7 +57,10 @@
      (is (= (get-days ["16Mar2009(mon)", "17Mar2009(tue)"]) ["mon", "tue"])))
 
   (testing "should return total sum, for given days to hotel"
-    (is (= (sum-of-lakewood ["mon"]) 110))
+    (is (= (sum-of-lakewood "Regular" ["mon"]) 110))
+    (is (= (sum-of-lakewood "Regular" ["fri", "sat"]) 200))
+    (is (= (sum-of-lakewood "Reward" ["fri"]) 80))
+    (is (= (sum-of-lakewood "Reward" ["fri", "sat"]) 160))
   )
 )
 
