@@ -66,18 +66,25 @@
     (is (= (sum-of lakewood "Reward" ["fri", "sat"]) 160))
     (is (= (sum-of bridgewood "Reward" ["fri", "sat"]) 160)))
 
+  (def regular-summed-hotels
+    [{ :name "Lakewood" :total 110 :classification 3}
+     { :name "Bridgewood" :total 160 :classification 4}
+     { :name "Ridgewood" :total 220 :classification 5}])
+
+  (def reward-summed-hotels
+    [{ :name "Lakewood" :total 80 :classification 3}
+     { :name "Bridgewood" :total 110 :classification 4}
+     { :name "Ridgewood" :total 100 :classification 5}])
+
   (testing "should receive the whole input and return objects with total, classification and hotel name when client is regular"
-           (is (= (get-hotels "Regular: 16Mar2009(mon)")
-                  [{ :name "Lakewood" :total 110 :classification 3}
-                   { :name "Bridgewood" :total 160 :classification 4}
-                   { :name "Ridgewood" :total 220 :classification 5}]
-                  )))
+           (is (= (get-hotels "Regular: 16Mar2009(mon)") regular-summed-hotels)))
 
   (testing "should receive the whole input and return objects with total, classification and hotel name when client is reward"
-           (is (= (get-hotels "Reward: 16Mar2009(mon)")
-                  [{ :name "Lakewood" :total 80 :classification 3}
-                   { :name "Bridgewood" :total 110 :classification 4}
-                   { :name "Ridgewood" :total 100 :classification 5}]
-                  )))
+           (is (= (get-hotels "Reward: 16Mar2009(mon)") reward-summed-hotels)))
+
+  (testing "should sort hotels by total key"
+           (is (= (sort-hotels reward-summed-hotels) [{ :name "Lakewood" :total 80 :classification 3}
+                                                      { :name "Ridgewood" :total 100 :classification 5}
+                                                      { :name "Bridgewood" :total 110 :classification 4}])))
 )
 

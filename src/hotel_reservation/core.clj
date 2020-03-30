@@ -63,3 +63,6 @@
                        :classification  (get hotel :classification) })
          [lakewood bridgewood ridgewood]
     )))
+
+(defn sort-hotels [hotels]
+  (sort-by :total hotels))
