@@ -56,11 +56,8 @@
   (testing "should return a list of days when dates are given"
      (is (= (get-days ["16Mar2009(mon)", "17Mar2009(tue)"]) ["mon", "tue"])))
 
-  (testing "should return a list of :weekend/:weekday"
-    (is (= (type-of-day ["mon"]) [:week]))
-    (is (= (type-of-day ["mon" "tue"]) [:week :week]))
-    (is (= (type-of-day ["sat"]) [:weekend]))
-    (is (= (type-of-day ["fri", "sat"]) [:week, :weekend]))
+  (testing "should return total sum, for given days to hotel"
+    (is (= (sum-of-lakewood ["mon"]) 110))
   )
 )
 

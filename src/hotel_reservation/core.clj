@@ -47,8 +47,9 @@
 (defn is-weekday? [day]
   (if (or (= day "sat") (= day "sun")) false true))
 
-(defn parse-day [day]
-  (if (is-weekday? day) :week :weekend))
-
-(defn type-of-day [days]
-  (map #(parse-day %) days))
+(defn sum-of-lakewood [days]
+  (reduce +
+          (map
+           (fn [day]
+              (get lakewood (if (is-weekday? day) :weekdays :weekends)))
+           days)))
