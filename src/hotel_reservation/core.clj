@@ -2,26 +2,28 @@
 (require '[clojure.string :as str])
 
 (def lakewood
-  { :classification 3
+  { :name "Lakewood"
+    :classification 3
     :weekdays       110
     :weekdaysReward 80
     :weekends       90
     :weekendsReward 80 })
 
 (def bridgewood
-  { :classification 4
+  { :name "Bridgewood"
+    :classification 4
     :weekdays       160
     :weekdaysReward 110
     :weekends       60
     :weekendsReward 50 })
 
 (def ridgewood
-  { :classification 5
+  { :name "Ridgewood"
+    :classification 5
     :weekdays       220
     :weekdaysReward 100
     :weekends       150
     :weekendsReward 40 })
-
 
 (defn get-dates [line]
   (let [dates (get (re-find #"\w+\:\ (.*)" line) 1)]
@@ -52,3 +54,12 @@
         weekendKey (if (= client-type "Regular") :weekends :weekendsReward)]
     (reduce +
       (map #(get hotel (if (is-weekday? %) weekdayKey weekendKey)) days))))
+
+(defn get-hotels [line]
+  (let [client-type (get-client-type line)
+        days (map #(get-day %) (get-dates line))]
+    (map (fn [hotel] { :name            (get hotel :name)
+                       :total           (sum-of hotel client-type days)
+                       :classification  (get hotel :classification) })
+         [lakewood bridgewood ridgewood]
+    )))

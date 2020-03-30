@@ -4,17 +4,20 @@
 
 (deftest hotel-structures
   (testing "hotel objects"
-     (lakewood { :classification  3
+     (lakewood { :name            "Lakewood"
+                 :classification  3
                  :weekdays        110
                  :weekdaysReward  80
                  :weekends        90
                  :weekendsReward  80 })
-     (bridgewood { :classification  4
+     (bridgewood { :name            "Bridgewood"
+                   :classification  4
                    :weekdays        160
                    :weekdaysReward  110
                    :weekends        60
                    :weekendsReward  50 })
-     (ridgewood { :classification   5
+     (ridgewood { :name             "Ridgewood"
+                  :classification   5
                   :weekdays         220
                   :weekdaysReward   100
                   :weekends         150
@@ -62,5 +65,19 @@
     (is (= (sum-of lakewood "Reward" ["fri"]) 80))
     (is (= (sum-of lakewood "Reward" ["fri", "sat"]) 160))
     (is (= (sum-of bridgewood "Reward" ["fri", "sat"]) 160)))
+
+  (testing "should receive the whole input and return objects with total, classification and hotel name when client is regular"
+           (is (= (get-hotels "Regular: 16Mar2009(mon)")
+                  [{ :name "Lakewood" :total 110 :classification 3}
+                   { :name "Bridgewood" :total 160 :classification 4}
+                   { :name "Ridgewood" :total 220 :classification 5}]
+                  )))
+
+  (testing "should receive the whole input and return objects with total, classification and hotel name when client is reward"
+           (is (= (get-hotels "Reward: 16Mar2009(mon)")
+                  [{ :name "Lakewood" :total 80 :classification 3}
+                   { :name "Bridgewood" :total 110 :classification 4}
+                   { :name "Ridgewood" :total 100 :classification 5}]
+                  )))
 )
 
