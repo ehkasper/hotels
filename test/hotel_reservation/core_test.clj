@@ -97,3 +97,10 @@
                                 { :name "Ridgewood" :total 220 :classification 5}])))
 )
 
+(deftest acceptance-tests
+  (testing "given the input, return the right output"
+     (is (= "Lakewood" (find-cheapest-hotel "Regular: 16Mar2020(mon), 17Mar2020(tues), 18Mar2020(wed)")))
+     (is (= "Bridgewood" (find-cheapest-hotel "Regular: 20Mar2020(fri), 21Mar2020(sat), 22Mar2020(sun)")))
+     (is (= "Ridgewood" (find-cheapest-hotel "Reward: 26Mar2020(thur), 27Mar2020(fri), 28Mar2020(sat)"))))
+)
+

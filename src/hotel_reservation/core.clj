@@ -66,3 +66,6 @@
 
 (defn sort-hotels [hotels]
   (sort-by :total (sort-by :classification > hotels)))
+
+(defn find-cheapest-hotel [line]
+  (get (first (sort-hotels (get-hotels line))) :name))
