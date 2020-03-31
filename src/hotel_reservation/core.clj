@@ -65,4 +65,4 @@
     )))
 
 (defn sort-hotels [hotels]
-  (sort-by :total hotels))
+  (sort-by :total (sort-by :classification > hotels)))

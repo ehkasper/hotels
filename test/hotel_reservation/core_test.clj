@@ -86,5 +86,14 @@
            (is (= (sort-hotels reward-summed-hotels) [{ :name "Lakewood" :total 80 :classification 3}
                                                       { :name "Ridgewood" :total 100 :classification 5}
                                                       { :name "Bridgewood" :total 110 :classification 4}])))
+
+  (testing "should sort hotels by classification if totals are equal"
+           (is (= (sort-hotels [{ :name "Lakewood" :total 100 :classification 3}
+                                { :name "Bridgewood" :total 100 :classification 4}
+                                { :name "Ridgewood" :total 220 :classification 5}])
+
+                               [{ :name "Bridgewood" :total 100 :classification 4}
+                                { :name "Lakewood" :total 100 :classification 3}
+                                { :name "Ridgewood" :total 220 :classification 5}])))
 )
 
