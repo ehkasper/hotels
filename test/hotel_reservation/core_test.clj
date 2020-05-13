@@ -2,27 +2,6 @@
   (:require [clojure.test :refer :all]
             [hotel-reservation.core :refer :all]))
 
-(deftest hotel-structures
-  (testing "hotel objects"
-     (lakewood { :name            "Lakewood"
-                 :classification  3
-                 :weekdays        110
-                 :weekdaysReward  80
-                 :weekends        90
-                 :weekendsReward  80 })
-     (bridgewood { :name            "Bridgewood"
-                   :classification  4
-                   :weekdays        160
-                   :weekdaysReward  110
-                   :weekends        60
-                   :weekendsReward  50 })
-     (ridgewood { :name             "Ridgewood"
-                  :classification   5
-                  :weekdays         220
-                  :weekdaysReward   100
-                  :weekends         150
-                  :weekendsReward   40 })))
-
 (deftest parsing-input
   (testing "should return true when input is a weekday"
            (is (is-weekday? "mon"))
